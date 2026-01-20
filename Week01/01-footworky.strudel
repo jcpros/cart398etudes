@@ -1,0 +1,8 @@
+// @title footworky
+// @license CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+// @by clarence
+// @date Jan 19, 2026
+
+
+setcps(140/60/4)
+s("[bd:3 bd:6!2]*2, [hh*3 ~ hh [hh]]*2, [oh oh oh*2]*2, ~ ~ <cp:3 sd:4 sd:5*6 [sd:6*3]> ~").bank("RolandTR808")

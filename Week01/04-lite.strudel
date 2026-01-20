@@ -1,0 +1,9 @@
+// @title lite
+// @license CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+// @by clarence
+// @date Jan 19, 2026
+
+
+lite
+setcps(180/60/4)
+s("[[<misc:2 ~!2 [misc:2*2]/3> <~ misc:1/7 >],[perc:14 perc:15/3 [perc:16*3]/4], [<sd:10 ~!2> [sd:16]/5 [sd:11*3]/6]]*3.1").bank("Rolandsystem100")

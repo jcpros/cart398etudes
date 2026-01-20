@@ -1,0 +1,7 @@
+// @title cc
+// @license CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+// @by clarence
+// @date Jan 19, 2026
+
+setcps(145/60/4)
+s("{viscospacedrum_rim!2 ~ <[rolandtr606_ht*5/3 rhythmace_perc*6]/3 rolandtr606_lt*2/5>}*2, {<[simmonssds5_lt:6 ~ simmonssds5_lt:6] [simmonssds5_lt:5 ~ simmonssds5_lt:5]> ~ ~ [rolandtr909_ht*2/3 ~ rolandtr909_ht]}")

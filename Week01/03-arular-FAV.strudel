@@ -1,0 +1,8 @@
+// @title arular
+// @license CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+// @by clarence
+// @date Jan 19, 2026
+
+setcps(126/60/4)
+s("[<bd:8*2 bd:1*4/5> <[bd:2*2 ~ bd:2]!3 [bd:4*4 bd:3!2]!2 [bd:4*2!2 bd:3*2]>], [sd ~ sd/3 sd*2]!2, [[perc:29 ~][~ perc:18*2][perc:18 ~ perc:18][perc:29 ~]]").bank("Rolandmc303")
+// im not sure how the timing of <bd:8*2 bd:1*4/5> works, does it become multiplying by 4/5? should i use brackets for more clarity?

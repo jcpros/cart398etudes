@@ -1,0 +1,7 @@
+// @title rattlesnake
+// @license CC BY-NC-SA 4.0 https://creativecommons.org/licenses/by-nc-sa/4.0/
+// @by clarence
+// @date Jan 19, 2026
+
+setcps(160/60/4)
+s("[~ [viscospacedrum_mt:1 ~ [viscospacedrum_mt:3*2] [<viscospacedrum_mt:2*4 [insect:2 ~ insect:4]*4>/3]]],[ viscospacedrum_hh:2*4 [<viscospacedrum_ht:5!2 ~ viscospacedrum_bd:5*3 ~ ~>]*2]")
