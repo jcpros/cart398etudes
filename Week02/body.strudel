@@ -1,0 +1,29 @@
+// @title body
+// @by clarence
+
+samples({
+  crash:['https://cdn.freesound.org/previews/807/807437_3797507-lq.mp3',
+         'https://cdn.freesound.org/previews/592/592388_11537497-lq.mp3'],
+  mach: 'https://cdn.freesound.org/previews/629/629029_6512938-lq.mp3',
+  body: 'https://cdn.freesound.org/previews/425/425150_3704754-lq.mp3',
+  amen: 'https://cdn.freesound.org/previews/260/260050_450294-lq.mp3',
+  pad: 'https://cdn.freesound.org/previews/497/497480_10350281-hq.mp3'
+  //https://freesound.org/people/JohnLaVine333/sounds/260050/
+  //https://freesound.org/people/Logicogonist/sounds/807437/
+  //https://freesound.org/people/magnuswaker/sounds/592388/
+  //https://freesound.org/people/commercialkings/sounds/629029/
+  //https://freesound.org/people/tailorvj/sounds/425150/
+})
+
+setcps(140/60/4)
+$: note("<13 8>").sound("body").splice(8,"7 4 7 [6 4]").cut(1).gain(0.5)
+
+$: note("14/4").sound("crash").cut(2).speed(3).gain(0.3)
+
+$: sound("[bd:8][bd:8][<[bd:8 ~ bd:8] [bd:3 bd:2]*2>][~ bd:3]").bank("Rolandtr808").dist("4").gain(0.04)
+
+$: sound("[cp:2][cp:2 ~][cp:2 [cp:2]*2][<cp:2 cp:2*4>]").bank("Rolandmc303")
+
+$: note("[c4?0.3 c2?0.2]/4").sound("amen").cut(2).fit().gain("0.4")
+
+$: note("c3/3").sound("mach").striate(4).cut(3).gain("0.13")

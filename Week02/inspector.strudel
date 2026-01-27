@@ -1,0 +1,27 @@
+// @title inspector
+// @by clarence
+// @date Jan 22nd
+
+samples({
+  lush: 'https://cdn.freesound.org/previews/842/842203_14923891-lq.mp3',
+  //https://freesound.org/people/kurumik/sounds/842203/
+  arti: 'https://cdn.freesound.org/previews/840/840903_17707799-lq.mp3',
+  //https://freesound.org/people/hotpin7/sounds/840903/
+  sine: 'https://cdn.freesound.org/previews/833/833631_18136826-lq.mp3',
+  //https://freesound.org/people/Nomagician/sounds/833631/
+  woosh: 'https://cdn.freesound.org/previews/807/807287_5455544-hq.mp3',
+  //https://freesound.org/people/gaussiansoundco/sounds/807287/
+  imp: 'https://cdn.freesound.org/previews/842/842531_4369435-hq.mp3'
+  //https://freesound.org/people/TannerSound/sounds/842531/  
+})  
+
+setcps(150/60/4)
+$: note("[~|0.8]!2 0.2 [[0.3*4] <4.3 [0.4*2 0.3|4.1]*3/2>] 0.543?0.8").s("woosh").begin(0.4).clip("0.7 <0.9?0.3 1.4>").hpf("2000|[600 700 1200]").pan("0.9(3,8) 0.4 0.5").dist(3).gain(0.2).slow(2).speed(0.6)
+
+$: note("1.2 1.4*2 ~!2 <1.5 1.6 1.7>*5/3").s("arti").hpf("2000").clip(1.7) // play with the clip amount to slowly introduce this
+  .dist(1.4).lpf(1000).gain(0.02)// play with lowpass as wellllll
+  .delay("0.33")
+
+$ : note("[0.2|[7|9]*[8 1 3 4]]").sound("lush").cut(1).begin(0.25).end(1.6).dist(6).lpf(1000).gain("0.001") // change 7 to 9 for nice variation
+
+$: sound("[bd:2*3]!3 < [misc:3 [misc:2*2 misc:1]]/4 [bd [bd|bd:3]?0.3 bd:2]> ").bank("KorgMinipops").lpf(600).gain(0.2) // keep it simple here

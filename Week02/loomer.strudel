@@ -1,0 +1,30 @@
+ //@by clarence
+ //@title loomer
+
+samples({
+  sword 'httpscdn.freesound.orgpreviews492492529_6596968-lq.mp3',
+  httpsfreesound.orgpeopleSoundFlakessounds492529
+  melt 'httpscdn.freesound.orgpreviews527527323_11502151-lq.mp3',
+  httpsfreesound.orgpeopleClearwavsoundsounds527323
+  gazey 'httpscdn.freesound.orgpreviews7474841_108576-lq.mp3', 
+  httpsfreesound.orgpeopleoymaldonadosounds74841
+  backRev 'httpscdn.freesound.orgpreviews7676946_30688-lq.mp3',
+  httpsfreesound.orgpeopleiktinussounds76946
+  ring 'httpscdn.freesound.orgpreviews456456696_9482149-lq.mp3',
+  httpsfreesound.orgpeopledeleted_user_9482149sounds456696
+  icepac 'httpscdn.freesound.orgpreviews399399906_2402876-lq.mp3'
+  httpsfreesound.orgpeopleMrthenoronhasounds399906
+})
+
+
+
+setcps(70604)
+$ note(4.5!2 1).sound(melt).clip(1).crush(9).dist(2).hpf(2000).slow(2).gain(0.4)
+$ note().sound()
+
+$ note([3.5 2.7](5,11,0,0,1)).sound(gazey).clip(1).begin(0.3).end(0.7).attack(0.3 0.1).lpf(200 400@2 [1008000]).gain(0.34)
+
+$ note(6.9).sound(ring).clip(2).hpf(2000).gain(0.2)
+
+$ note(0.3@50.4 50.6).sound(sword, icepac).speed(10 6 3).fast(2).clip(3).pan(0.3 0.4 0.1 0.9).dist(2).gain(0.05).hpf(200)  a revoir, i want the impacts huge and sporadic
+

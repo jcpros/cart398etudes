@@ -1,0 +1,37 @@
+// @title janky
+// @by clarence
+
+
+samples({
+  break:'https://cdn.freesound.org/previews/260/260050_450294-lq.mp3',
+  //https://freesound.org/people/JohnLaVine333/sounds/260050/
+  drumLoop: 'https://cdn.freesound.org/previews/251/251290_3162775-lq.mp3',
+  //https://freesound.org/people/zagi2/sounds/251290/
+  crackle: 'https://cdn.freesound.org/previews/27/27474_181367-lq.mp3',
+  //https://freesound.org/people/EcoDTR/sounds/27474/
+  click: 'https://cdn.freesound.org/previews/387/387799_4062622-lq.mp3',
+  //https://freesound.org/people/Jagadamba/sounds/387799/
+  pop: ['https://cdn.freesound.org/previews/784/784040_5287430-lq.mp3',
+        'https://cdn.freesound.org/previews/789/789790_6368615-lq.mp3'],  
+  //https://freesound.org/people/Sadiquecat/sounds/784040/
+  //https://freesound.org/people/quatricise/sounds/789790/
+  clp: 'https://cdn.freesound.org/previews/533/533576_1847035-lq.mp3',
+  //https://freesound.org/people/Saltbearer/sounds/533576/
+  amen: 'https://cdn.freesound.org/previews/260/260050_450294-lq.mp3'
+  //https://freesound.org/people/JohnLaVine333/sounds/260050/
+})
+
+setcps(150/60/4)
+
+//$: note("c1").sound("amen").slice(8,"4!2 3 [3]  [5 ~ 7]").cut(1).speed(2)
+
+$: note("f3*4!2?0.5 [e2*4 ~ [e3*2/3 e4*1[e5*4]/6] <c3 c5>/4]").sound("pop").gain(0.2).speed("0.2 1 0.4 0.7")
+
+$: note("[c5 c3 <[e2 e3*4] [e1*3]/4>](3,8,<0,0,0,1>)").sound("click").slow(2).gain(0.3)
+
+$: note("~!4 <c2?0.8 [c4*3]/7>").sound("crackle").cut(1)
+
+$: note("10?0.8|8?0.4").sound("drumLoop").striate(6)
+  .crush("<13 7>")
+  .cut("<0.7 1.9>")
+  .gain(0.5).cut(1).speed(4)

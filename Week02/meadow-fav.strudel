@@ -1,0 +1,49 @@
+// @title meadow_choir
+// @by clarence
+// @date 20 Jan
+
+
+setcps(120/60/4)
+
+samples({
+  metal:'https://cdn.freesound.org/previews/405/405665_5923045-hq.mp3',
+  pad: 'https://cdn.freesound.org/previews/497/497480_10350281-hq.mp3',
+  git: 'https://cdn.freesound.org/previews/799/799008_16840242-hq.mp3',
+  wet: ['https://cdn.freesound.org/previews/267/267221_3112522-hq.mp3',
+      'https://cdn.freesound.org/previews/353/353691_1431924-hq.mp3'],
+  bd: 'https://cdn.freesound.org/previews/132/132629_2225396-lq.mp3',
+  choir: 'https://cdn.freesound.org/previews/578/578327_10522382-lq.mp3' 
+})
+
+// guitar
+$: note("[d3 d3 e#3] ~ ~ [f3 ~  <g3 c3/3 [f4 g4*2]>]").s("git")
+  .gain("0.15")
+  .delay(".3 .7").room(.9)
+  .lpf("600")
+  .fast("1").color("[grey blue]").slow(1).punchcard()
+  //.hpf("2000")
+
+
+//pad
+$: note("<d2*2 [g1 g2]>").s("pad").cut(1).gain("0.2").lpf("500")
+
+//metal 
+$: note("c5*2 d5*4 <e4*2 e4*6>").s("metal").cut("2").gain("0.2").pan("0.5 [0.2 0.7*2] 0.1").color("[white pink]").punchcard()
+
+
+//droplets
+ $: note(" ~!2 < [e4 [e4 e3?0.4]] [~ e4*2]>").s("wet:2") // random 
+  //.cut("2")
+  .gain("0.5")
+  .room("0.06") 
+
+
+//bass drum
+$:note("<c2*2 d#2*2> ~!2").s("bd").cut("2").gain("0.2").fast(1).dist("5").lpf("200").gain("0.002").color("[grey blue]").punchcard()
+
+
+
+//$: note("f#2?0.8").sound("choir").begin("0.2").cut("4").gain("0.05")
+
+
+
