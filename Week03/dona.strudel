@@ -1,0 +1,15 @@
+//@title melody
+//@by clarence
+
+
+samples({
+  lead: ['https://cdn.freesound.org/previews/324/324040_29308-hq.mp3','https://cdn.freesound.org/previews/299/299934_2050105-lq.mp3'],
+  git: 'https://cdn.freesound.org/previews/799/799008_16840242-hq.mp3',
+  //https://cdn.freesound.org/previews/299/299934_2050105-lq.mp3
+})
+
+setcps(120/60/4)
+$: note("e4 e3 [g4?0.8]*3, [<d2 e2 f2> g3?0.4 <~ f3>]").sound("git").room(0.8)
+  .speed(0.3)
+  //.speed("<3.4 3.5 3.37>")
+  

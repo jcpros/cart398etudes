@@ -1,0 +1,28 @@
+//@title strain
+//@by clarence
+
+
+samples({
+    amen: 'https://cdn.freesound.org/previews/260/260050_450294-lq.mp3',
+  body: 'https://cdn.freesound.org/previews/425/425150_3704754-lq.mp3',
+  drumLoop: 'https://cdn.freesound.org/previews/251/251290_3162775-lq.mp3',
+})
+setcps(110/60/4)
+
+$: note("<e1@4 f1@4 a1@4>").sound("user").partials([1]).adsr("0.8:0.9:1:2").fm("<0.3 0.6 1.5 2>/4").fmh(2).gain("0.3")
+  .octave(0) // change to 2
+
+$: note("<e2@2 f2@3 a2@2>").sound("user").partials([1, 0|0.3, 0.4]).adsr("0.8:0.9:1:2").fm("<0.3 0.6 1.5 2>/4").fmh(2).gain("0.01").octave(2).fast(2)
+
+$: note("c4 [e4 f4] [g4 d4]").sound("user").partials([1]).noise("<0.3 0.6>").adsr("0:0.8:0:0.4")
+
+  .struct("[x x [x ~] x]*4")
+  .crush("9").lpf(600)
+  .room(0.76).roomsize(0.9)
+  .gain("0.2")
+  .octave(0) // change to -1
+
+$: sound("drumLoop").slice(30, "[0 25 <5 18 [2 17] 18> 6*2]*2").every(4, x=>x.dist(2).lpf(200).delay(0.4).gain(0.001))
+  .gain(0.2)
+
+$: sound("amen").slice(8, " 4(3,8) [[7|7*2] ~ [3 7] 5]").adsr("0:0.2:0:0").gain("0.2")
