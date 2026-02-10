@@ -1,0 +1,58 @@
+//@title kismet
+//@by clarence
+
+
+samples('github:jcpros/samples')
+
+samples({
+  sword: 'https://cdn.freesound.org/previews/492/492529_6596968-lq.mp3',
+  //https://freesound.org/people/SoundFlakes/sounds/492529/
+  melt: 'https://cdn.freesound.org/previews/527/527323_11502151-lq.mp3',
+  //https://freesound.org/people/Clearwavsound/sounds/527323/
+  gazey: 'https://cdn.freesound.org/previews/74/74841_108576-lq.mp3', 
+  //https://freesound.org/people/oymaldonado/sounds/74841/
+  backRev: 'https://cdn.freesound.org/previews/76/76946_30688-lq.mp3',
+  //https://freesound.org/people/iktinus/sounds/76946/
+  ring: 'https://cdn.freesound.org/previews/456/456696_9482149-lq.mp3',
+  //https://freesound.org/people/deleted_user_9482149/sounds/456696/
+  icepac: 'https://cdn.freesound.org/previews/399/399906_2402876-lq.mp3',
+  crash:['https://cdn.freesound.org/previews/807/807437_3797507-lq.mp3',
+         'https://cdn.freesound.org/previews/592/592388_11537497-lq.mp3'],
+  mach: 'https://cdn.freesound.org/previews/629/629029_6512938-lq.mp3',
+  pad: 'https://cdn.freesound.org/previews/497/497480_10350281-hq.mp3',
+  //https://freesound.org/people/Mrthenoronha/sounds/399906/
+  open: 'https://cdn.freesound.org/previews/93/93937_7037-lq.mp3',
+  //https://freesound.org/people/tim.kahn/sounds/93937/
+  whisper: 'https://cdn.freesound.org/previews/503/503270_10089976-lq.mp3',
+  //https://freesound.org/people/LadyImperatrix/sounds/503270/
+  incan: 'https://cdn.freesound.org/previews/438/438989_2008500-lq.mp3'
+  //https://freesound.org/people/Magnesus/sounds/438989/
+  
+})
+
+
+setcps(100/60/4)
+
+
+txt: stack(
+
+  note("5?0.6").sound("melt").begin("0.3").end("0.8").cut(1).speed(8).hpf(2000).crush(8)
+  .gain(0.2),
+  note("8").sound("icepac").speed(0.5).striate(6).gain("0.1").slow(16)
+  //note("9?0.8").sound("mach|crash").lpf(600).speed(6).striate(10).gain("0.1").pan(rand.range(0.2,0.9))
+          )
+
+tonal: stack(
+   //note("30").sound("incan").gain(0.1).lpf(sine.range(200,800)),
+   note("18@5").sound("user").noise(0.06).partials([1]).adsr("0.6:0.9:1:2").fm("0.2").fmh(2.3).gain("0.4")
+  .octave(1), // change to 2
+  note("14?0.8").sound("backRev").speed(1).gain("0.2").end("0.7").clip(0.5).cut(3).often(x=>x.delay(0.3).delayfeedback(0.3))
+)
+
+vox : stack(
+  note("4@3 5@2?0.8").sound("open").speed(3).begin("<0.1 0.3>").end("<0.5 1>").clip(2).pan(sine.range(0.2,0.8))
+  .gain(1.8),
+  n("~ 1").sound("open").slow(5).every(5,x=>x.ply(4).sometimes(x=>x.speed(4).delay(0.3).delayfeedback(0.3)).striate(6).room(1.8).roomsize(0.9).pan(square.range(0,1)))
+  .gain(2.9),
+  note("40 41?0.6").sound("incan").slow(3).gain(0.01).lpf(sine.range(600,3000)).every(3,x=>x.ply(2))
+)
