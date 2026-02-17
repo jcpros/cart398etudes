@@ -1,0 +1,19 @@
+//@title it_takes_courage
+//@by clarence
+
+samples({
+  amen: 'https://cdn.freesound.org/previews/271/271016_2448533-hq.mp3'
+})
+setcps(130/60/4)
+
+let stab = n("[1,3,5] [1,5,7]?0.5 ~ [1,4,8]!2").sound("user").partials([1,0,0.5,1]).adsr("0:0.3:0:0").scale("d3:lydian").gain(0.2).room(0.4)
+let drums = sound("amen").slice(8,"[1 4 6 < [7 2] 4>], [~ 4]*2").adsr("0:0.6:0:0").speed(2)
+  .cut(1).hpf("500").gain(0.8).every(5, x=>x.echo(7,1/4,0.8).speed(3).gain(0.5))
+let bass = note("1 [4 5] <[2 3] [5 6]>").sound("user").partials([1,0.5,1,0]).dist(3).adsr("0:0.3:0:0").scale("d1:lydian").octave(0).gain(0.3)
+
+
+stack(
+  stab,
+  drums,
+  bass
+)

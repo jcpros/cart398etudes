@@ -1,0 +1,83 @@
+//@title [copy]-xr
+//@by clarence
+
+samples({
+  git: 'https://cdn.freesound.org/previews/799/799008_16840242-hq.mp3',
+  //https://cdn.freesound.org/previews/299/299934_2050105-lq.mp3
+    amen: 'https://cdn.freesound.org/previews/271/271016_2448533-hq.mp3'
+})
+
+samples('github:jcpros/samples')
+setcps(130/60/4)
+
+
+let melo = note("7 <1 6 7 8> [[~ 3.2 4.5] [2|1]]/2 <3 [5.8 9]>").sound("git").scale("d2:ritusen").adsr("0.1:0.6:0:0")
+  .delay(0.9).dfb(0.7).dt("0.03|0.06")
+  //.sometimes(x=>x.rev().struct("x(3,8)").room(0.5).roomsize(2).hpf("1000")).orbit(1)
+  .speed("0.8|0.4").gain("0.5")
+  .slow(2)
+
+
+ let text = n("[5|2|3]*3").sound("bleep").speed(0.8)
+  .crush(7)
+  .delay(0.9).delaytime(0.1).dfb(0.8)
+  .hpf(1000).orbit(2).gain(0.9).slow(7).often(x=>x.pan(rand.range(0,1)))
+
+
+let chords = note("<[[1,3,5]|[1,2,3]] [1,2,4]*2 [3,5,8] [3,5,7]*2>").sound("user").partials([1,0.5]).noise(0.05).adsr("0:0.7:0:0.4").scale("e#3:ritusen")
+  .often(x=>x.echo(4,1/4,0.4).pan(rand.range(0.2,0.8)))
+.gain(0.3)
+
+
+let amen = note(50).sound("amen").chop(6).speed(1).clip(0.4).gain(0.6).sometimes(x=>x.speed(0.5).crush(5).delay(0.8).orbit(1))
+
+
+let bass = note("<[1 1 1 [2 ~ 3 4]] [2 [2|~] 2 [3 5]*1.33] [[4] 4 4 [5 [7|9]]]>").sound("user").partials([1,0]*5).adsr("0:0.25:0:0").scale("e#1:ritusen").dist(2).cut(1)
+  .gain(0.3)
+
+
+let reese = note("<1 4 5 3>").sound("user").partials([1,0]*10).adsr("0.1:0.9:0:0").noise(0.1).dist(2).lpf(100)
+  .fm(2).fmh(0.5)
+  .scale("e#1:ritusen").gain(0.3)
+
+
+
+$: stack(
+  text,
+  amen,
+).degradeBy(0.3).every(4,x=>x.fast(4))
+
+$: stack(
+  chords,
+  bass,
+  //melo
+)
+
+// let intro = stack (
+//   text,
+//   melo
+// )
+
+// let A = stack(
+//   chords,
+//   reese,
+//   text
+// ) 
+
+
+// let B = stack (
+//   chords,
+//   reese,
+//   amen,
+//   text
+// )
+
+// let outro = stack (
+//   chords.room(2),
+//   melo.room(1),
+//   text
+// )
+
+
+// I'm having a hard time figuring out how arrange() works. I have tried to stack patterns of the "song" into sections, but arrange does not take stack as a variable 
+//apparently. How can that be achieved???

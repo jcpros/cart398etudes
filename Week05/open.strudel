@@ -1,0 +1,34 @@
+//@title open
+//@by clarence
+
+
+samples('github:jcpros/samples')
+
+
+samples({
+  sword: 'https://cdn.freesound.org/previews/492/492529_6596968-lq.mp3',
+  //https://freesound.org/people/SoundFlakes/sounds/492529/
+  open: 'https://cdn.freesound.org/previews/93/93937_7037-lq.mp3',
+  //https://freesound.org/people/tim.kahn/sounds/93937/
+  
+})
+
+setcps(135/60/4)
+
+
+// bass: 
+// note("2*3 [2 ~ 4] ~ [4 5]").scale("a1:vietnamese:1").speed(0.25).sound("bass:3").gain("0.4").cut(1)
+
+// sword: note("[34|50|45*3]?0.4").sound("sword").speed(2).cut(2).gain("0.3")
+
+p: note("34*2|40*4").sound("open")
+  //.adsr("0:0.5:0:0")
+  .gain("0.8").cut(3)
+
+perc: note("[60*4][50*4][40*3][30*2]").sound("user").partials([1,0.3]).noise(0.3).adsr("0:0.04:0:0").rarely(x=>x.room(0.7).roomsize(0.9).octave(0.5).ply(2))
+
+clap: sound("cp!4").bank("Rolandtr808").gain("0.4")
+
+kick: sound("[bd:3][bd:3 ~][bd:3 ~ bd:3][~ bd:3]").bank("Rolandtr808")
+
+

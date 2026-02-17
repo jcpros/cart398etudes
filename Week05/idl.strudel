@@ -1,0 +1,13 @@
+//@title idl/track10
+//@by clarence
+
+
+setcps(140/60/4)
+
+$: note("<1 2 3 4>(3,8)").sound("user").partials([1,0.3,0.4,0.6]).adsr("0:1.2:1:0.5").scale("eb1:major").fm(0.5).fmh(2).gain("0.7")
+
+$: note("<[4 5 7 4 5 8 4 7] [4 5 [8|9] 4 5 7 4 7] [5 5 7 [4|6] 5 9 4 7] [4 5 11 4 5 9 4 9]>").sound("user").partials([1,0.5,1,0.5]).gain("0.7").adsr("0:0.2:0:0").scale("eb2:major").delay(0.3).delaytime(1/4)
+
+$: note("<[[7][~ 7][8 9][8 7]]!3 [[~][~ 11*8][~][6 8]] >").sound("user").partials([1,0.3,0.2]).adsr("0.1:0.4:0:0.7").scale("eb:major").gain("0.3").slow(2)
+  //.arp("[0 3 4 5]")
+
