@@ -1,0 +1,51 @@
+//@title pointillisme
+//@by clarence
+
+samples('github:jcpros/samples')
+
+samples({
+  git: 'https://cdn.freesound.org/previews/799/799008_16840242-hq.mp3',
+  //https://cdn.freesound.org/previews/299/299934_2050105-lq.mp3
+    amen: 'https://cdn.freesound.org/previews/271/271016_2448533-hq.mp3'
+})
+
+setcps(110/60/4)
+
+let bass = note("<[[1 [~ 1]][~ 1*2][1*2]?0.3[[1|-4]*2]] [[1 [~ [2|-6]]][~ 1][1][4*2]?0.6]>").sound("user").partials([1,0,0.1]).adsr("0:0.2:0:0").fm("1.88").fmh("2").fmdecay("0.2").fmsustain(0.1)
+  .scale("f1:enigmatic")
+  //.bpf(sine.segment(4).range(500,900))
+  .slow(2).sometimes(x=>x.ply(3).delay(0.5).dt(0.01).roomsize(0.1).room(2).orbit(1))
+  .gain(0.6)
+
+let melo = note("<[[1.2 3 2][~][~ 4 2][1 ~]] [[2 4 1][~][[8 ~ 8]?0.3 4][3 ~]] [[1.2 3 2][~][~ 6 -1][2 ~]]>").sound("wt_vgame:2").loopBegin(0.8).adsr("0.1:0.2:0:0")
+  .scale("f2:enigmatic").sometimes(x=>x.echo(3,1/4,0.5))
+  .hpf("[500|1000]")
+  .pan(perlin.range(0,1))
+  .gain("0.2")
+
+let clav = n(rand.segment(6).range(0,6)).sound("clave").fast(2).clip("<1 0.4 2>")
+  .sometimes(x=>x.ply(2).orbit(1).room(0.3))
+  .gain(0.5)
+
+let kk = sound("[bd:2][[bd:2 ~]~][bd:2 ~][~]").bank("Rolandtr808").adsr("0.02:0.5:1:0")
+  .dist(3).lpf(1000)
+  .gain(0.1)
+
+let perc = sound("mpc60_perc:5").struct("[~[~ x]][~ [x ~]][~][x?0.7]").late(0.01)
+  .speed(2)
+  .sometimes(x=>x.echo(2,1/4,0.4).speed(4).hpf(2000))
+  .gain(0.4)
+
+
+// $: sound("amen").striate(12,"1 2 3").clip(0.3).cut(2)
+//   .gain(0.4)
+
+
+stack (
+  bass,
+  melo,
+  clav,
+  kk,
+  perc 
+).fast(1)
+  //.degradeBy(0.2).delay(0.0).dfb(0.0).dt(0.01).speed(1)

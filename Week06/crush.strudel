@@ -1,0 +1,84 @@
+//@title crush
+//@by clarence
+
+
+setcps(100/60/4)
+samples('github:jcpros/samples')
+
+let vox = sound("vox:1").splice(8,"1 [1 1]*[2|1] 2 <4 [5 6]> ")
+  .speed(0.26)
+  .gain(0.6)
+  //.sometimes(x=>x.speed(0.52).crush(9).hpf(500).rev().orbit(1).room(1).roomsize(2).roomfade(3))
+
+
+// $: note(sine.segment(16).range(0,12)).sound("user").partials([1,0,1,0]).adsr("0:0.4:0:0").fm(2).fmh(2).fmattack(0.1).fmdecay(0.3)
+//   .fast(2)
+//   .scale("f#3:flamenco")
+//   .gain(0.1)
+
+let inBass = note("<3(3,8) 4(3,8) 8(3,8) 6(3,8)>").sound("user").partials([1,0,1,0,1]).adsr("0:0.6:1:0.1").noise(0.05)
+   .fm(2).fmh(2).fmattack(0).fmdecay(0.5)
+   .lpf(600)
+   .dist(2)
+   .scale("e1:flamenco")
+   .fast(2)
+   .gain(0.1)
+
+let mainBass = note("<[~ 3] [~ 4] [~ 9] [~ 6] [~ 11]!4>").sound("user").partials([1,0,1,0,1,0]).adsr("0.1:0.8:1:0.2").noise(0.2)
+   .fm(4).fmh(3).fmattack(0.2).fmdecay(0.7)
+   .dist(3)
+   .lpf(300)
+   .orbit(4).room(0.9).roomsize(0.4).roomfade(0.5)
+   .scale("e1:flamenco")
+   .fast(2)
+   .gain(0.04)
+
+ let counterPluck = note("<3(5,8) 4(5,8) 8(5,8) 2(5,8)>").sound("user").partials([1,0,1,0]).adsr("0.1:0.3:0:0").fm(2).fmh(2).fmattack(0.03).fmdecay(0.2)
+   .delay(0.6)
+   .scale("e3:flamenco")
+   .fast(2)
+ .gain(0.2)
+
+let pluck = note("[<8 -1> [-3 4] <[9 [14*2 9]] [11 13]>]").sound("psaltery_pluck:3").adsr("0:0.2:0.0")
+  .scale("e0:flamenco")
+  .orbit(3)
+  .slow(0.5)
+  .speed(2)
+  .delay(0.9).dt(0.03).dfb(0.7)
+  //.room(0.9).roomsize(4).roomfade(0.5)
+  .gain(0.7)
+
+let kik = sound("lt(3,8)").bank("Doepferms404").mask("[~][x][x]")
+  //.speed(0.4).lpf(1000)
+  .fast(2)
+
+let laser = sound("[oh*8|oh(5,8)]").bank("Doepferms404").adsr("0:0.1:0:0")
+  .fast(2)
+  .speed(2)
+  .sometimes(x=>x.speed(0.25).orbit(2).phaser(5))
+  .every(4, x=>x.ply(2).speed(2).pan(rand.range(0.2,0.8)))
+  .gain(0.3)
+
+let snare = sound("rolandcompurhythm78_sd").struct("[~][~][~][x|[x x*[2|1]]]")
+  .fast(2)
+  .gain(0.6)
+
+let drums = stack (kik,snare,laser)
+
+let voxMod = stack(vox.sometimes(x=>x.speed(0.52).crush(9).hpf(500).rev().orbit(1).room(1).roomsize(1).roomfade(3)))
+
+
+
+arrange(
+  [2,stack(vox)],
+  [2,stack(voxMod,kik)],
+  [4,stack(voxMod,drums,inBass.gain("<0.01 0.02 0.04 0.05>"))],
+  [8, stack(voxMod,drums,inBass,counterPluck)],
+  [3, stack(voxMod.speed(0.13),drums.speed("<0.5 0.6 1>"))],
+  [1,vox.delay(0.4).roomsize(2).room(2).tremolo("[2]")],
+  [8, stack(voxMod,drums,mainBass,counterPluck.octave(1).pan(perlin.range(0,1)))],
+  [8, stack(vox,kik.speed(0.4).lpf(1000),laser,snare.speed(0.7)).degradeBy("<0.1!2 0.2!2 0.3!2 0.5!2>")],
+  [0,"~"]
+)
+
+//[~ lt][lt][~ lt][~]

@@ -1,0 +1,46 @@
+//@title thoughtspeak
+//@by clarence
+
+setcps(110/60/4)
+samples('github:jcpros/samples')
+
+// this part is fun but does not fit the vibe anymore :/
+// $: n(rand.segment("16").range(0,5)).sound("vowels").clip(0.3)
+//   //.struct("x ~ x(3,8) [x*2]")
+//   .speed("<2!4 4!4>").sometimes(x=>x.clip(2))
+//   .crush(7).fast(1).orbit(1)
+//   .gain(0.15)
+
+//$: sound("rolandjd990_lt").duckorbit(1).duckattack(0.1).duckdepth(0.4).speed(0.5)
+
+$: sound("<[[bd:4 [~ bd:4]][~][~ bd:4?0.5][~]] [[bd:4 [~ bd:4]]*4]/5 >").bank("Rolandsystem100")
+  .duckorbit("1:2").duckattack(0.1).duckdepth(1)
+  .speed("[0.5|0.3]").slow(2)
+
+// $: n(rand.segment("<16 8 6>/2").range(0,19)).sound("yamaharm50_misc")
+//   .bpf(perlin.segment(16).range(300,5000))
+//   .every(4,x=>x.orbit(2).delay(0.4).dt(0.1).dfb(0.3).crush(8).pan(perlin.range(0.2,0.8)))
+//   .sometimes(x=>x.ply(2).speed(0.5))
+//   .slow(2)
+//   .gain(0.4) // to unmute when you need a rest, an intermediary moment
+
+$: sound("[~][~][sd:9|[sd:9*4 sd:11*3]|[sd:9 ~ sd:9*2]][~]").bank("Rolandtr808")
+  .sometimes(x=>x.orbit(3).delay(0.2).dt(0.2).dfb(0.5).pan(rand.range(1,0).speed(sine.segment(16).range(-1,4)))) // this ruined it in the best way ,i have no idea when snare hits will occur
+
+$: note("<[d#3,f#4,b4] [a3,g3,d3] [d3,f#3,b4]!2>").sound("user").partials([1,0.5,1,0.5]).fm(4).fmh(2).adsr("0.3:0.4:1:0.3").noise(0.1)
+  .crush(9)
+  .lpf(1000)
+  .roomsize(0.8)
+  .room(2)
+  .octave(-1)
+  .tremolodepth(2).tremolosync("16")
+  .slow(2)
+  .orbit(2)
+  .gain(0.2)
+
+
+
+$: note("c2").sound("vox").speed(1).dist(2).begin("0.03").end("0.6")
+  .cut(1).gain(0.1)
+
+//[c3,e#3,d3]!2 [c2,e#2,d2], [c3,e#3,d3] 

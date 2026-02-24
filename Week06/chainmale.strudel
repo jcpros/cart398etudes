@@ -1,0 +1,46 @@
+//@title chainmale
+//@by clarence
+
+samples('github:jcpros/samples')
+
+samples({ icepac: 'https://cdn.freesound.org/previews/399/399906_2402876-lq.mp3', 
+          melt: 'https://cdn.freesound.org/previews/527/527323_11502151-lq.mp3',})
+
+setcps(90/60/4)
+
+
+$: sound("particles").striate(9).speed(0.3)
+
+$: note("15?0.6").sound("[imp:1|imp:3]").clip("[0.4|2]").lpf(1000)
+  //.duckorbit(1).duckdepth(1)
+  //.cut(1)
+  //.slow(4)
+  .gain(0.2)
+
+$: sound("vox:2").splice(12,"[4 ~] [2 7][3 4] 7")
+  .cut(1)
+  //.begin(0.1)
+  //.orbit(3)
+  .room(0.5).roomsize(2)
+  .sometimes(x=>x.clip(0.4).speed(-2).ply(2).delaytime(0.1).delay(0.6))
+  .gain(0.5)
+
+$: sound("icepac").speed(-1).cut(2)
+  .orbit(2).roomsize(1.2).room(0.7)
+  .gain(0.2)
+
+$: sound("melt").note("[40|3|0.1]").clip(0.5)
+  .speed(sine.segment(16).range(1,3))
+  .orbit(2).room(2)
+  .pan(perlin.segment(12).range(0.2,0.8))
+  .gain(0.8)
+
+
+// $: note(rand.segment(2).range(45,100)).sound("user").partials([1,0,0.1]).adsr("0:0.1:0:0").fm("2.88").fmh("3.45").fmdecay("0.2").fmsustain(0.1)
+//   .speed(2)
+//   .slow(1)
+//   .gain(0.3)
+
+
+//1 [2 7][3 4] 6
+//
