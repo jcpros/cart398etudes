@@ -1,0 +1,6 @@
+//@title salamanda
+//@by clarence
+src(o0).modulate(noise(1), 0.4).add(shape(4, 0.2), 0.001)
+  .blend(gradient(2).shift(0, 0.3, 0.6), 0.01).saturate(1).out(o0)
+
+render(o0)

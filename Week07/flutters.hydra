@@ -1,0 +1,10 @@
+//@title flutters
+//@by clarence
+
+
+voronoi(6, 6, 0.8).blend(src(o0).scale(0.3), 2)
+  .scale(0.2*Math.sin(time)+2)
+.blend(gradient(2).pixelate(100,100), 0.2).out(o0)
+
+
+render(o0)

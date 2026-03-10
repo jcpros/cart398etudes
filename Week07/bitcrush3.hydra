@@ -1,0 +1,17 @@
+//@title bitcrush<3
+//@by clarence
+
+await loadScript("https://cdn.jsdelivr.net/gh/geikha/hyper-hydra@latest/hydra-text.js")
+await loadScript("https://hyper-hydra.glitch.me/hydra-text.js")
+
+
+hydraText.font = "arial"
+
+str1 = "bitcrush <3"
+
+src(o1).modulate(osc(4, 0.4), 0.003).add(osc(2, 0.6, 0.2)
+       .mask(text(str1).scale("0.2")))
+       
+  .out(o1)
+
+render(o1)

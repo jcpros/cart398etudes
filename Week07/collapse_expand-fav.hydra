@@ -1,0 +1,17 @@
+//@title i lie here collapsing and expanding
+//@by clarence
+
+await loadScript("https://metagrowing.org/extra-shaders-for-hydra/lib-softpattern.js")
+
+blinking(6,0.2,0.02,0.1).blend(blinking(2),2).out(o1)
+
+
+// blobs(0.2, 0.6, 0.3)
+//   .modulate(blobs(0.9,0.1,0.3).scale(0.5*Math.sin(time)),0.3)
+//   .color(0.7,0.8,0)
+//    .invert()
+// .kaleid(6)
+// .add(noise(1000,0.4),0.1)
+//   .out(o2)
+
+// render(o2)
