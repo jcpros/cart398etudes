@@ -1,0 +1,14 @@
+//@title fresafresca
+
+shape(100, 0.7, 0.1).repeat("[2 3]",2).scrollX(0.2, 0.2).out(o0)
+
+noise(1).modulate(noise(100, 0.2)).scrollY(0.2, 0.9).out(o1)
+
+src(o2)
+  .modulate(src(o1).add(solid(1,1), -0.5), 0.001)
+  .blend(src(o0).color(0.2,0.2,0.9).shift(0.8,0.1,0.1).saturate(2), 0.3).out(o2)
+
+src(o2).modulateScale(noise(100, 3), 0.1).modulate(voronoi(1, 0.1, 2), 0.2).out(o3)
+
+
+render()

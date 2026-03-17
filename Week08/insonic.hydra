@@ -1,0 +1,20 @@
+//@title insonic
+//@by clarence
+
+voronoi(50, 2,0.8)
+  .thresh(0.7, 0.01)
+  .add(gradient(3).shift(0, 0.9, 0.9), 0.7)
+  .out(o0)
+
+
+osc(100, 0.01).rotate(10,-0.2)
+  .modulate(src(o1).modulateScale(noise(1, 2).thresh(0.3)), 0.06)
+  .add(gradient(2).modulateHue(osc(1)), 0.9)
+  .luma(0.4, 0.02)
+  .saturate(3)
+  .out(o1)
+
+
+solid(0,0.7,0.8).diff(src(o1).mask(shape(4, 0.5).repeat(4,3).modulateScale(voronoi(10,2).modulate(noise(1000,1))), 0.2),0.2).out(o2)
+
+render(o2)

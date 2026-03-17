@@ -1,0 +1,29 @@
+//@title frosted glass
+//@by clarence
+
+osc().modulate(osc(9,0.2),0.2).mult(shape(4,0.6,0.2).color(0.2,0.1,0.7)).out(o1)
+
+solid(0.6,0.6,0.6).add(noise(1.2,0.6)
+  .modulate(noise(0.2), 0.2)
+  .mult(osc(10).color(0.2, 0.2, 0.8).saturate(2).modulatePixelate(noise(3, ()=>0.0003*Math.sin(time)),60)), 2)
+  .modulateScale(noise( ()=> 0.2*Math.sin(time)+1000), () => 1.2*Math.sin(time))
+  .out(o1)
+
+
+
+src(o2)
+  .modulate(osc(10, 0.2).thresh(0.1, 0.06))
+  .rotate(10)
+  .blend(noise(()=> 10* Math.sin(time)), 0.1)
+  .add(gradient(6).invert().shift(0.1, 0.1, 0.9).contrast(2), 0.03)
+  //.luma(0.1, 0.7)
+  //.pixelate(1000, 1000)
+  .scrollX(0.3, 0.2)
+  .mask(shape(4, 0.9, 0.2))
+  .modulateHue(osc(1000), 100)
+  //.modulate(noise(0.5, 0.3).diff(shape(4, 0.2), 0.2))
+  .out(o2)
+
+
+
+render(o1)

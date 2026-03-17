@@ -1,0 +1,33 @@
+
+//@title turbulent
+/@by clarence
+
+//texture
+osc(10, -0.2, 2).modulate(noise(1).modulateRotate(noise(), 0.7), 0.3).shift(0.2, 0.2).out(o0)
+
+// modify rotate amount for more turbulence, and modulate osc() speed for faster movement
+
+
+//shape
+shape(4, 0.3, 0.4).out(o1)
+
+//src(out).modulate(texture, small amount).blend(shape, small amount)
+src(o2).modulateHue(src(o0), 100).blend(src(o1), 0.1).out(o2)
+//modulate hue amount to have more or less vaporous effect
+
+
+
+//background compositing
+solid(0.1,0.3,1)
+  //.mult(src(o2).invert().mask(shape(2, 0.01,0.1)).contrast(4), 0.5)
+  .diff(src(o0).mult(src(o2)), 0.6).out(o3)
+//play with blend modes, and change the solids colors
+
+//solid(0.1,0.3,1)
+//solid(1,1,1)
+//solid(0.2,0.9,0.6)
+//solid(0.6,0.3,0.6)
+
+
+
+render(o3)

@@ -1,0 +1,24 @@
+//@title nemesis
+//@by clarence
+
+await loadScript("https://metagrowing.org/extra-shaders-for-hydra/lib-cond.js")
+
+await loadScript("https://cdn.jsdelivr.net/gh/geikha/hyper-hydra@latest/hydra-text.js")
+
+await loadScript("https://hyper-hydra.glitch.me/hydra-text.js")
+
+hydraText.font = "arial"
+hydraText.lineWidth = "2%"
+str2 = "NEMESIS"
+
+
+
+src(o1).modulate(osc(1,0.02).modulateRotate(noise(), 0.02).add(solid(0.8,1),-0.5), 0.0001) // modulate rotation amount will change the speed of the animation, 0.001 is good middle ground between movement and readability
+  .diff(text(str2).modulateScale(osc(1,1), 0.2).modulateRepeat(noise(1,0.2), 2, 0.3), 0.3) // diff or layer is good here, reduce scale amount for more readability
+  .add(solid(1,1,1), 0.01) // add + lower values give the "choppy echo" effect, whereas blend has a more ghost trail effect, and change the color!!!!
+  .scrollY(0.001) 
+   .out(o1)
+
+solid(0.2,0.2,0.2).diff(src(o1), 0.8).out(o2)
+
+render(o2)
