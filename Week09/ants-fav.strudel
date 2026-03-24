@@ -1,0 +1,58 @@
+//@title ants
+//@by clarence
+setcps(100/60/4)
+
+samples({field: 'https://cdn.freesound.org/previews/577/577623_2061858-lq.mp3'})
+
+
+
+let pad = note("3 ~!2 [[3,8]|[2,14]] <[2,9] [1,6]>/4").sound("user").partials([1,0,1,0]).adsr("0.2:0.3:0.5:0.4") // love this sort of enclume pad
+  .fm(2).fmh(3).fmdecay(0.4) // these settings are good but can be played around a bit, notably fm at 2 or 0.5, try to stick to integers or clear ratios
+  .hpf(500)
+  .scale("d1:ichikosucho")
+  //.echo(4,0.33, 0.2)
+  //.sometimes(x=>x.ply(2).room(2).roomsize(2).octave(1.4).lpf(100))
+  //.slow(2)
+  .cut(1)
+  .gain(0.7)
+
+let drone = note("<1 3 2 5 7 6>/4").sound("user").partials([1,"[0|1]",0.1, rand.segment(4).range(0,1)]).adsr("0.2:0.3:1:0.7")
+  .scale("d4:ichikosucho")
+  .lpf(3000)
+  //.tremolo(2) // can also add more movement this way
+  .every(5, x=>x.chop(10).delay(2))
+  .gain(0.03) // here im having a hard time figuring out which level is the best, it always sounds quite loud
+
+
+let perc = sound("user").noise(0.6).adsr("0:0.001:0:0")
+  .bpf(rand.range(100, 5000)).bpdepth(2).bpq(2) // definitely play with the range, 100-400 is good for just kick like sounds, higher is good for just clicks
+  .struct("x [x|x*10] ~ x*3 x [~ x] [x ~] [x]") // ofc play with the rhythm here! x [x|x*10] ~ x*3 x [~ x] [x ~] [x]
+  /*.struct("x(3,5)")
+  .fast(2) //this section is good for more rhythmic steadiness*/ 
+  .dist("3:0.4").disttype("fold") // just adds a bit of character
+  .pan(sine.segment(16))
+  .sometimes(x=>x.ply(2)) //here,, adding echo(4,0.01, 0.1) adds a zipper effect
+  //.degradeBy(0.2)
+  .gain(0.8)
+
+
+
+let text = sound("field").begin(rand.range(0,0.9)).end(rand.range(0.3, 0.9))
+  .cut(2)
+  .tremolo(0.2)
+  .hpf(300)
+  .often(x=>x.speed(2))
+  .room(0.8)
+  .gain(0.4)
+
+_intro: stack(
+  perc,
+  text 
+)
+
+A: stack(
+  perc,
+  text,
+  pad,
+  drone
+)

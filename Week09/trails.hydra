@@ -1,0 +1,24 @@
+s0.initCam()
+
+//@title trails
+//@by clarence
+
+
+//src(s0).scale(1).thresh(0.4).modulate(src(s0).modulatePixelate(noise(1000,3),10), 0.1).out(o0)
+
+src(s0).scale(1).thresh(0.4).modulate(src(s0).modulatePixelate(osc(0.1,0.1),100), 0.1).out(o0)
+
+
+src(o0).modulate(src(o0), 0.3).add(src(o0).color(0,0,1).scrollX(0.2,0.4)).out(o1) 
+
+src(o2).modulate(src(o0), 0.01).blend(noise(1000).color(0.7,0.6,0), 0.1).out(o2) // you can also invert the noise instead of the color, nice results too. Non inverted is just easier to read. Play with modulation amount also
+
+solid(0.6,0.6,0.6).add(src(o2).scale(0.6).mask(shape(4, 0.6))).out(o3)
+
+
+  //.blend(src(o0), 0.1).out(o2)
+
+
+
+
+render()

@@ -1,0 +1,45 @@
+//@title tears
+//@by clarence
+
+samples('github:jcpros/samples')
+
+samples('github:tidalcycles/dirt-samples')
+
+
+
+setcps(110/60/4)
+
+_$: sound("vox:1")
+  .chop(10)
+  .adsr("0:[0.2|0.6]:0:0")
+  .rev()
+  .speed("[-0.8 |-.9 |-.84]")
+  .rarely(x=>x.ply(2).hpf(1000).echo(4,0.01,0.1).pan(rand.range(0.3,0.8)))
+  //.fast(2)
+  .struct("[x x [x [~ x]/3] [~ x]]*2")
+  .gain(0.7)
+
+$: 
+   n("2 2").sound("vowels")
+  .speed("[2.3|2.4]").delay(0.4)
+  .tremolo(4).tremolodepth(1)
+  .gain(0.5)
+
+$: n("[2|9] 3*4 [~ 4] <3 [5 8*2] [7]>").sound("lighter")
+  .fast(2).speed(rand.segment(16).range(-1,5))
+  .cut(1)
+  .sometimes(x=>x.echo(2,0.5,0.4).hpf(1000))
+  .pan(rand.range(0.2,0.8))
+  .dist("3:0.5")
+  .gain(0.2)
+
+$: sound("breaks165").slice(8,"[7][~ 2][3][2 ~]")
+  .speed(2)
+  .fast(2)
+  .gain(0.7)
+
+$: sound("808:4")
+  .struct("x x [x [~ x]] [~ x]")
+  //.speed(2)
+  .penv(-9).pcurve(1)
+  .gain(0.7)

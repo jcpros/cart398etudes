@@ -1,0 +1,52 @@
+//@title lifesim
+//@by clarence
+
+samples('github:jcpros/samples')
+samples('github:tidalcycles/dirt-samples')
+
+
+setcps(140/60/4)
+
+$: n(rand.range(0,12)).sound("metal").struct("x(3,8)")
+  .fast(2)
+  .speed(0.1)
+  .cut(2)
+  .orbit(1).delaytime(0.01).delay(2)
+  .adsr("0:0.2:0:0")
+  .gain(0.2)
+
+$: n(rand.range(0,19)).sound("tabla")
+  .struct("x x x ~")
+  .fast(4)
+  .cut(3)
+  .speed(0.5)
+  .sometimes(x=>x.disttype("fold").dist("2:0.4"))
+  .often(x=>x.room(2).roomsize(0.01).speed(-1))
+  .hpf(1000)
+  .gain(0.9).degradeBy(0.4)
+
+
+$: sound("stab:9")
+  .struct("x(5,8)?0.2")
+  .adsr("0:0.4:0:0")
+  .sometimes(x=>x.speed(5).ply(2))
+  .gain(0.0)
+
+$: sound("808lt:7")
+  .note("<30 27 28>")
+  .speed(1)
+  .dist("3:0.6")
+  .struct("[~] [x [~ x]] [~ [x]] [x]")
+  //.fast(2)
+  .gain(0.2)
+
+_$: sound("imp")
+  .struct("[x][~][~][~ [~ x]]") 
+  .cut(1)
+  .adsr("0:0.2:0.0")
+  .speed(0.6)
+  .sometimes(x=>x.speed(2).echo(4, 1/2, 0.2).pan(rand.range(0.2, 0.8)))
+  //.sometimes(x=>x.speed(-2))
+  .gain(0.2)
+
+$: sound("808:1").clip(0.2).struct("x!4").gain(0.8)
